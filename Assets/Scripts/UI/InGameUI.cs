@@ -19,12 +19,12 @@ public class InGameUI : MonoBehaviour
     public void ChangeTime(int time)
     {
         _storage.Time = time;
-        _timeText.text = time.ToString();
+        _timeText.text = time.ToString("D3");
     }
 
     private void OnScore(int score)
     {
         _storage.Score += score;
-        _scoreText.text = _storage.Score.ToString();
+        _scoreText.text = _storage.Score.ToString("D6");
     }
 }

@@ -23,6 +23,7 @@ public class Timer : MonoBehaviour
     
     private void Awake()
     {
+        _gameUI.ChangeTime((int)_timeLeft);
         GlobalEventManager.OnComplete.AddListener(OnComplete);
         GlobalEventManager.OnGameStart.AddListener(OnGameStart);
     }

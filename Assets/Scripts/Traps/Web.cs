@@ -24,7 +24,7 @@ public class Web : MonoBehaviour
 
     private void OnDestroy()
     {
-        GlobalEventManager.CallAddScore(200);
+        GlobalEventManager.CallAddScore(100);
         if (_playerMove != null)
         {
             _playerMove.TrapDisable(true);
