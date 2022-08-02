@@ -17,6 +17,13 @@ namespace Runtime
         /*-----------------------------------------------------------------------------------------*/
         public static readonly UnityEvent<int> OnScore = new UnityEvent<int>();
         public static void CallAddScore(int status) => OnScore.Invoke(status);
-
+        
+        /*-----------------------------------------------------------------------------------------*/
+        public static readonly UnityEvent<float> OnUpSpeedGame = new UnityEvent<float>();
+        public static void CallUpSpeedGame(float status) => OnUpSpeedGame.Invoke(status);
+        
+        /*-----------------------------------------------------------------------------------------*/
+        public static readonly UnityEvent OnGameStart = new UnityEvent();
+        public static void CallGameStart() => OnGameStart.Invoke();
     }
 }

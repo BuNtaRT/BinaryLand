@@ -15,7 +15,7 @@ public class Web : MonoBehaviour
         if (col.CompareTag(Tags.PLAYER) && _playerMove == null)
         {
             MovePlayer _player = col.GetComponent<MovePlayer>();
-            _player.Enable(false);
+            _player.TrapDisable(false);
             _player.transform.DOMove(transform.position, 1);
             _playerMove = _player;
             GlobalEventManager.CallTraps(1);
@@ -27,7 +27,7 @@ public class Web : MonoBehaviour
         GlobalEventManager.CallAddScore(200);
         if (_playerMove != null)
         {
-            _playerMove.Enable(true);
+            _playerMove.TrapDisable(true);
             GlobalEventManager.CallTraps(-1);
         }
     }

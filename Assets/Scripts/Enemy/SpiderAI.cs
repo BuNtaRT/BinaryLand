@@ -10,11 +10,15 @@ using UnityEngine;
 public class SpiderAI : EnemyBase
 {
     private bool _update = true;
-    [SerializeField] private float _speed = 1;
     private TweenerCore<Vector3, Vector3, VectorOptions> _animation;
     private Coroutine _updateAI;
 
     private void Start()
+    {
+        GlobalEventManager.OnGameStart.AddListener(OnGameStart);
+    }
+    
+    private void OnGameStart()
     {
         _updateAI = StartCoroutine(nameof(UpdateAI));
     }
@@ -25,7 +29,7 @@ public class SpiderAI : EnemyBase
         while (_update)
         {
             var emptyCells = _mapService.GetAroundEmptyWithFilter(_whiteList, _position);
-            var newPos = emptyCells.GetRandomWithOut(oldPos);
+            var newPos = emptyCells.GetRandom();
             _animation = transform.DOLocalMove(newPos, _speed).SetEase(Ease.Linear).OnComplete(() =>
             {
                 oldPos = _position;
@@ -62,9 +66,9 @@ public class SpiderAI : EnemyBase
 
     private void OnDestroy()
     {
-        _update = false;
-        GlobalEventManager.CallAddScore(500);
         StopCoroutine(_updateAI);
         _animation.Kill();
+        _update = false;
+        GlobalEventManager.CallAddScore(_scoreReward);
     }
 }
